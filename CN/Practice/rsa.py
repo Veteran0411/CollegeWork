@@ -9,7 +9,7 @@ def encrypt(public_key, plaintext):
 def decrypt(private_key, ciphertext):
     d, n = private_key
     return ''.join(chr(pow(char, d, n)) for char in ciphertext)
-
+   
 
 p = randprime(2**5, 2**6)
 q = randprime(2**5, 2**6)

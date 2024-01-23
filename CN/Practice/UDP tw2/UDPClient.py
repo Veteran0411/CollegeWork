@@ -4,11 +4,9 @@ client_socket=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 
 try:
     while True:
-        message=input("enter the message u want to send: ")
-        print(f"sending: {message}")
-        client_socket.sendto(message.encode("utf-8"),("localhost",12345))
-except Exception as e:
-    print(f"error occurred: {e}")
-
-finally:
+        message=input("enter the message").encode("utf-8")
+        print(f"sending {message} to server: ")
+        client_socket.sendto(message,("localhost",1))
+except:
+    print("error occured")
     client_socket.close()
