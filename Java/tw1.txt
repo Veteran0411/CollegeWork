@@ -5,9 +5,24 @@ b) print the entire file c) print contents to another file.
 Read both source & target file names & check for their existence/ non – existence to take 
 appropriate actions.
 */
+
+import java.io.*;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package exampractice;
+
+/**
+ *
+ * @author Veteran
+ */
+
+
 import java.io.*;
 import java.util.Scanner;
-public class FileOperations {
+import java.io.File;
+public class ExamPractice {
 public static void main(String[] args) {
 Scanner scanner = new Scanner(System.in);
 System.out.println("Enter the name of the source file: ");
@@ -66,7 +81,7 @@ File targetFile = new File(targetFileName);
 if (targetFile.exists()) {
 System.out.println("Target file already exists. Overwriting...");
 }
-BufferedReader reader = new BufferedReader(new FileReader(sourceFile);
+BufferedReader reader = new BufferedReader(new FileReader(sourceFile));
 BufferedWriter writer = new BufferedWriter(new FileWriter(targetFile));
 String line;
 while ((line = reader.readLine()) != null) {
@@ -81,7 +96,4 @@ e.printStackTrace();
 }
 }
 }
-
------------------------------------------------------------------------------------------
-
 
