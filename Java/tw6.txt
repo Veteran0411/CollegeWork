@@ -1,6 +1,4 @@
------------------------------------------------------------------------------------------
 
-TERM WORK 6
 class BankAccount {
  private double balance;
 public BankAccount(double initialBalance) {
@@ -30,7 +28,9 @@ public BankAccount(double initialBalance) {
  return balance;
  }
 }
-public class BankDemo {
+
+//Driver class
+public class TW6 {
  public static void main(String[] args) {
  // Create a bank account with an initial balance of $1000
  BankAccount account = new BankAccount(1000);
@@ -60,4 +60,5 @@ public class BankDemo {
  System.out.println("Final balance: $" + account.getBalance());
  }
 }
+
 
