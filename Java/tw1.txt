@@ -4,19 +4,8 @@ a) print characters on the console – one character at a time
 b) print the entire file c) print contents to another file.
 Read both source & target file names & check for their existence/ non – existence to take 
 appropriate actions.
-*/
 
-import java.io.*;
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
-package exampractice;
 
-/**
- *
- * @author Veteran
- */
 
 
 import java.io.*;
@@ -96,4 +85,3 @@ e.printStackTrace();
 }
 }
 }
-
