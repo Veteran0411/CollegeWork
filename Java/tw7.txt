@@ -1,6 +1,3 @@
------------------------------------------------------------------------------------------
-
-TERM WORK 7
 import java.util.LinkedList;
 class Buffer {
  private LinkedList<Integer> items = new LinkedList<>();
@@ -66,7 +63,9 @@ class Consumer implements Runnable {
  }
  }
 }
-public class Main {
+
+// driver class
+public class TW7 {
  public static void main(String[] args) {
  Buffer buffer = new Buffer(3);
  Thread producerThread = new Thread(new Producer(buffer, "Producer"));
@@ -75,4 +74,3 @@ public class Main {
  consumerThread.start();
  }
 }
-
