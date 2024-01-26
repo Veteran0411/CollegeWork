@@ -1,12 +1,10 @@
------------------------------------------------------------------------------------------
 
-TERM WORK 4
 import java.util.ArrayList;
 import java.util.Scanner;
-public class Main {
+public class TW4 {
  private ArrayList<Integer> integerList;
  private ArrayList<Float> floatList;
- public Main() {
+ public TW4() {
  integerList = new ArrayList<>();
  floatList = new ArrayList<>();
  }
@@ -44,7 +42,7 @@ public class Main {
  }
  public static void main(String[] args) {
  Scanner scanner = new Scanner(System.in);
- Main operations = new Main();
+ TW4 operations = new TW4();
  while (true) {
  System.out.println("Menu:");
  System.out.println("1. Add an integer element");
@@ -99,4 +97,3 @@ public class Main {
  }
  }
 }
-
