@@ -1,14 +1,11 @@
------------------------------------------------------------------------------------------
 
-TERM WORK 9
-package twtransactionproc;
 import java.sql.*;
-public class TWTransactionProc {
+public class TW9 {
  public static void main(String[] args) {
- String jdbcUrl = "jdbc:mysql://localhost:3306/testdb";
+ String jdbcUrl = "jdbc:mysql://localhost:3306/employee";
  String username = "root";
- String password = "root";
- try (Connection connection = 
+ String password = "Somling0411";
+ try (Connection connection =   
 DriverManager.getConnection(jdbcUrl, username, password)) {
  connection.setAutoCommit(false);
  try {
@@ -27,13 +24,11 @@ insertTransaction(connection, 4, 400);
  System.out.println("Rollback to Savepoint 2.");
  
 connection.commit();
- System.out.println("Transaction committed after 
-rollback.");
+ System.out.println("Transaction committed after rollback.");
  } catch (SQLException e) {
  
  connection.rollback();
-System.err.println("Transaction rolled back due to an 
-exception.");
+System.err.println("Transaction rolled back due to an exception.");
  e.printStackTrace();
  }
  } catch (SQLException e) {
@@ -42,19 +37,14 @@ exception.");
  }
  private static void insertTransaction(Connection connection, int 
 id, int amount) throws SQLException {
- String insertQuery = "INSERT INTO transactions (id, amount) 
-VALUES (?, ?)";
+ String insertQuery = "INSERT INTO transaction (id, amount) VALUES (?, ?)";
  try (PreparedStatement preparedStatement = 
 connection.prepareStatement(insertQuery)) {
  preparedStatement.setInt(1, id);
  preparedStatement.setInt(2, amount);
  preparedStatement.executeUpdate();
- System.out.println("Inserted transaction with id=" + id + " 
-and amount=" + amount);
+ System.out.println("Inserted transaction with id=" + id + " and amount=" + amount);
  }
  }
 }
-
-
-
 
