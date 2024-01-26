@@ -1,16 +1,7 @@
-TERM WORK 1
-/*1]Write a menu driven Java program to read contents of a file and :
-a) print characters on the console – one character at a time
-b) print the entire file c) print contents to another file.
-Read both source & target file names & check for their existence/ non – existence to take 
-appropriate actions.
-
-
-
 
 import java.io.*;
 import java.util.Scanner;
-import java.io.File;
+//import java.io.File;
 public class ExamPractice {
 public static void main(String[] args) {
 Scanner scanner = new Scanner(System.in);
@@ -45,7 +36,7 @@ try {
 BufferedReader reader = new BufferedReader(new FileReader(file));
 int c;
 while ((c = reader.read()) != -1) {
-System.out.print((char) c);
+System.out.println((char) c);
 }
 reader.close();
 } catch (IOException e) {
@@ -85,3 +76,4 @@ e.printStackTrace();
 }
 }
 }
+
