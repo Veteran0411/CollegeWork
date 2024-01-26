@@ -36,11 +36,12 @@ class Network():
 
     def print_routing_table(self,node):        
         print(f'routing table for node{node}')
-        print("destination")
+        print("destination\tcost")
         for dest,cost in self.distance_vector[node].items():
             if dest !=node:
                 print(f'{dest}\t\t{cost}')
         print()
+        
 if __name__=="__main__":
     nodes=[1,2,3,4,5]
     network=Network(nodes)

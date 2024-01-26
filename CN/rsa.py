@@ -1,5 +1,5 @@
 # rsa
-from sympy import randprime
+#from sympy import randprime
 from math import gcd
 
 def encrypt(public_key, plaintext):
@@ -11,8 +11,10 @@ def decrypt(private_key, ciphertext):
     return ''.join(chr(pow(char, d, n)) for char in ciphertext)
 
 
-p = randprime(2**5, 2**6)
-q = randprime(2**5, 2**6)
+#p = randprime(2**5, 2**6)
+#q = randprime(2**5, 2**6)
+p=13
+q=17
 
 # Calculate n and phi
 n = p * q

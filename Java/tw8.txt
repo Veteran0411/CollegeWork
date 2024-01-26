@@ -1,0 +1,31 @@
+-----------------------------------------------------------------------------------------
+
+TERM WORK 8
+package twjdbc;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+public class TWJDBC {
+ public static void main(String[] args) {
+ String url = "jdbc:mysql://localhost:3306/empdb";
+ String username = "root";
+ String password = "root";
+ try (Connection connection = DriverManager.getConnection(url, username, password)) {
+ String sql = "Select employee_id, first_name FROM employee";
+ try (PreparedStatement statement = connection.prepareStatement(sql)) {
+ try (ResultSet resultSet = statement.executeQuery()) {
+ while (resultSet.next()) {
+ int employeeId = resultSet.getInt("employee_id");
+ String firstName = resultSet.getString("first_name");
+ System.out.println("Employee ID: " + employeeId + ", First Name: " + firstName);
+ }
+ }
+ }
+ } catch (SQLException e) {
+ e.printStackTrace();
+ }
+ }
+ }
+

@@ -1,0 +1,102 @@
+-----------------------------------------------------------------------------------------
+
+TERM WORK 4
+import java.util.ArrayList;
+import java.util.Scanner;
+public class Main {
+ private ArrayList<Integer> integerList;
+ private ArrayList<Float> floatList;
+ public Main() {
+ integerList = new ArrayList<>();
+ floatList = new ArrayList<>();
+ }
+ // Method to add elements to the integer ArrayList
+ public void addElement(int element) {
+ integerList.add(element);
+ }
+ // Method to add elements to the float ArrayList
+ public void addElement(float element) {
+ floatList.add(element);
+ }
+ // Method to remove elements from the integer ArrayList
+ public void removeElement(int index) {
+ if (index >= 0 && index < integerList.size()) {
+ integerList.remove(index);
+ } else {
+ System.out.println("Invalid index for integer ArrayList!");
+ }
+ }
+ // Method to remove elements from the float ArrayList
+ public void removeElement(float element) {
+ if (floatList.contains(element)) {
+ floatList.remove(element);
+ } else {
+ System.out.println("Element not found in float ArrayList!");
+ }
+ }
+ // Method to perform linear search on the integer ArrayList
+ public boolean linearSearch(int key) {
+ return integerList.contains(key);
+ }
+ // Method to perform linear search on the float ArrayList
+ public boolean linearSearch(float key) {
+ return floatList.contains(key);
+ }
+ public static void main(String[] args) {
+ Scanner scanner = new Scanner(System.in);
+ Main operations = new Main();
+ while (true) {
+ System.out.println("Menu:");
+ System.out.println("1. Add an integer element");
+ System.out.println("2. Add a float element");
+ System.out.println("3. Remove an integer element");
+ System.out.println("4. Remove a float element");
+ System.out.println("5. Search in integer ArrayList");
+ System.out.println("6. Search in float ArrayList");
+ System.out.println("7. Exit");
+ System.out.print("Enter your choice: ");
+ int choice = scanner.nextInt();
+ switch (choice) {
+ case 1:
+ System.out.print("Enter an integer element: ");
+ int intElement = scanner.nextInt();
+ operations.addElement(intElement);
+ break;
+ case 2:
+ System.out.print("Enter a float element: ");
+ float floatElement = scanner.nextFloat();
+ operations.addElement(floatElement);
+ break;
+ case 3:
+ System.out.print("Enter the index of the integer element to remove: ");
+ int intIndex = scanner.nextInt();
+ operations.removeElement(intIndex);
+ break;
+ case 4:
+ System.out.print("Enter the float element to remove: ");
+ float floatElementToRemove = scanner.nextFloat();
+ operations.removeElement(floatElementToRemove);
+ break;
+ case 5:
+ System.out.print("Enter the integer to search in the list: ");
+ int intSearchKey = scanner.nextInt();
+ boolean intFound = operations.linearSearch(intSearchKey);
+ System.out.println("Integer found: " + intFound);
+ break;
+ case 6:
+ System.out.print("Enter the float to search in the list: ");
+ float floatSearchKey = scanner.nextFloat();
+ boolean floatFound = operations.linearSearch(floatSearchKey);
+ System.out.println("Float found: " + floatFound);
+ break;
+ case 7:
+ System.out.println("Exiting program...");
+ System.exit(0);
+ break;
+ default:
+ System.out.println("Invalid choice! Please enter a valid option.");
+ }
+ }
+ }
+}
+

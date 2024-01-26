@@ -1,70 +1,58 @@
-def xor(a, b):
-    result = []
-    for i in range(1, len(b)):
-        if a[i] == b[i]:
-            result.append('0')
-        else:
-            result.append('1')
-    return ''.join(result)
+import sys
 
+class Network:
+    def __init__(self,nodes):
+        self.nodes=nodes
+        self.graph={}
+        self.distance_vector={}
 
-def mod2div(dividend, divisor):
-    pick = len(divisor)
-    tmp = dividend[0:pick]
-    while pick < len(dividend):
-        if tmp[0] == '1':
-            tmp = xor(divisor, tmp) + dividend[pick]
-        else:
-            tmp = xor('0'*pick, tmp) + dividend[pick]
-        pick += 1
-    if tmp[0] == '1':
-        tmp = xor(divisor, tmp)
-    else:
-        tmp = xor('0'*pick, tmp)
-    checkword = tmp
-    return checkword
+    def add_link(self,n1,n2,cost):
+        if n1 not in self.graph:
+            self.graph[n1]={}
+        self.graph[n1][n2]=cost
 
+        if n2 not in self.graph:
+            self.graph[n2]={}
+        self.graph[n2][n1]=cost
 
-def encodeData(data, key):
-    l_key = len(key)
-    appended_data = data + '0'*(l_key-1)
-    remainder = mod2div(appended_data, key)
-    codeword = data + remainder
-    return codeword, remainder
+    def initialize_distance_vector(self,node):
+        self.distance_vector[node]={node:0}
+        for n in self.nodes:
+            if n!=node:
+                self.distance_vector[node][n]=sys.maxsize
 
+    def update_distance_vector(self,node):
+        for dest in self.nodes:
+            if dest!=node:
+                mincost=sys.maxsize
+                for neighbour in self.graph[node]:
+                    if dest in self.distance_vector[neighbour]:
+                        cost=self.distance_vector[neighbour][dest]+self.graph[node][neighbour]
+                        if cost<mincost:
+                            mincost=cost
+                self.distance_vector[dest][node]=mincost
+                
+    def print_distance_vector(self,node):
+        print("Printing the routing table ")
+        print("Destination \t\t cost")
+        for dest,cost in self.distance_vector[node].items():
+            print(f"{dest}\t\t{cost}")
 
-def manipulate(data, idx):
-    if idx >= len(data):
-        print("Invalid index")
-        return data
-    if data[idx] == "0":
-        data = data[:idx] + "1" + data[idx+1:]
-    else:
-        data = data[:idx] + "0" + data[idx+1:]
-    return data
-
-
-def checksum(rem):
-    if "1" in rem:
-        print("Data was manipulated")
-    else:
-        print("Correct data recieved")
-
-
-data = input("Enter data you want to send->")
-key = input("Enter the divisor in binary:")
-ans, rem = encodeData(data, key)
-print("Encoded data:", ans)
-ch = int(input("Enter choice\n1. Error free transmission\n2. Error simulation"))
-
-
-if ch == 1:
-    remainder = mod2div(ans, key)
-    print("Code word:", ans, "\t", remainder)
-    checksum(remainder)
-elif ch == 2:
-    idx = int(input("Enter the index of bit you want to manipulate:"))
-    ndata = manipulate(ans, idx)
-    rem = mod2div(ndata, key)
-    print("Manipulated Code word", ndata, "\tRemainder:", rem)
-    checksum(rem)
+    
+nodes=[1,2,3,4,5]
+net=Network(nodes)
+net.add_link(1, 2, 2)
+net.add_link(1, 3, 2)
+net.add_link(1, 4, 1)
+net.add_link(2, 3, 3)
+net.add_link(2, 5, 1)
+net.add_link(3, 4, 4)
+net.add_link(3, 5, 1)
+net.add_link(1, 5, 1)
+for n in nodes:
+    net.initialize_distance_vector(n)
+for i in range(6):
+    for n in nodes:
+        net.update_distance_vector(n)
+for n in nodes:
+    net.print_distance_vector(n)
