@@ -1,8 +1,5 @@
------------------------------------------------------------------------------------------
-
-TERM WORK 3
 import java.io.*;
-public class BinaryReadWriteDemo {
+public class TW3 {
  public static void main(String[] args) {
  try {
  BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -54,4 +51,3 @@ private static void compareFileProperties(String file1, String file2) {
  }
  }
 }
-
