@@ -1,5 +1,5 @@
 TW3 softlink hardlink
-
+/*
 tw8 and tw10
 
 header file
@@ -11,6 +11,11 @@ AsciiTraceHelper ascii;
 
 pointToPoint.EnableAsciiAll(ascii.CreateFileStream("first.tr"));
 pointToPoint.EnablePcapAll("first");
+
+---------command
+./waf -run scratch/first
+
+*/
 
 Source code :
  #include<iostream>
