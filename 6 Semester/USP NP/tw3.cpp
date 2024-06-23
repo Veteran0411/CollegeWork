@@ -1,5 +1,17 @@
 TW3 softlink hardlink
 
+tw8 and tw10
+
+header file
+#include "ns3/netanim-module.h"
+
+code 
+AnimationInterface anim("first,xml");
+AsciiTraceHelper ascii;
+
+pointToPoint.EnableAsciiAll(ascii.CreateFileStream("first.tr"));
+pointToPoint.EnablePcapAll("first");
+
 Source code :
  #include<iostream>
 #include<sys/types.h>
