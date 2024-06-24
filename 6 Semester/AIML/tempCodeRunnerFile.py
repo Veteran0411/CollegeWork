@@ -1,0 +1,1 @@
+print("\nThe Maximally specific hypothesis for the training instance is: ", hypothesis)

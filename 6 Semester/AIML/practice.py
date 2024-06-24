@@ -1,35 +1,25 @@
-from collections import defaultdict
-graph=defaultdict(list)
+import csv
+a=[]
+with open("enjoysport.csv","r") as file:
+    for row in csv.reader(file):
+        a.append(row)
+        
+print("total number of training instances",len(a))
 
-def addEdge(u,v):
-    graph[u].append(v)
-    
-def dfs(start,goal,depth):
-    print(start,end="")
-    if start==goal:
-        return True
-    
-    if depth<=0:
-        return False
-    
-    for i in graph[start]:
-        if dfs(i,goal,depth-1):
-            return True
-    return False
+num_attribute=len(a[0])-1
 
-def dfid(start,goal,depth):
-    print(f"start node:{start}\n Goal node {goal}\n")
-    for i in range(depth):
-        print("DFID at level",i+1)
-        print("path taken: ",end="")
-        isPathFound=dfs(start,goal,i)
-    if isPathFound:
-        print("goal node found")
-        return
+hypothesis=["0"]*num_attribute
+
+for i in range(len(a)):
+    if a[i][num_attribute]=="yes":
+        print("\nInstance", i + 1, "is", a[i], "and is a Positive Instance")
+        for j in range(num_attribute):
+            if hypothesis[j]=="0" or hypothesis[j]==a[i][j]:
+                hypothesis[j] = a[i][j]
+            else:
+                hypothesis[j] = '?'
+        print("updated hypothesis",hypothesis)
     else:
-        print("goal node not found")
-
-addEdge("A","B")
-addEdge("A","C")
-addEdge("C","D")
-dfid("A","D",3)
+        print("\nInstance", i + 1, "is", a[i], "and is a Negative Instance Hence Ignored")
+        
+print("\nThe Maximally specific hypothesis for the training instance is: ", hypothesis)
